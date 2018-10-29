@@ -2,11 +2,11 @@ sudo: true
 os: trusty
 cache: false
 env:
-- URL=https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
-before_install:
 - unset CI
 - unset TRAVIS
 - unset CONTINUOUS_INTEGRATION
+- URL=https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
+before_install:
 - openssl aes-256-cbc -K $encrypted_e4372197a91c_key -iv $encrypted_e4372197a91c_iv
   -in assets/server.key.enc -out assets/server.key -d
 - export SFDX_AUTOUPDATE_DISABLE=false
