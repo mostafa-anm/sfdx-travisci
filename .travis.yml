@@ -12,6 +12,7 @@ before_install:
 - export SFDX_DOMAIN_RETRY=300
 - export SFDX_DISABLE_APP_HUB=true
 - export SFDX_LOG_LEVEL=DEBUG
+- npm i -g sfdx-cli
 - sfdx --version
 - sfdx plugins --core
 - sfdx force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile assets/server.key
