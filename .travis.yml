@@ -1,10 +1,7 @@
 sudo: true
-os: osx
-
-addons:
-  homebrew:
-    casks:
-    - sfdx
+os: trusty
+language: node_js
+node_js: "8"
 
 before_install:
 - openssl aes-256-cbc -K $encrypted_e4372197a91c_key -iv $encrypted_e4372197a91c_iv
@@ -14,10 +11,12 @@ before_install:
 - export SFDX_DOMAIN_RETRY=300
 - export SFDX_DISABLE_APP_HUB=true
 - export SFDX_LOG_LEVEL=DEBUG
+- npm i -g sfdx-cli
 - sfdx --version
 - sfdx plugins --core
 - sfdx force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile assets/server.key
   --username $USERNAME --setdefaultdevhubusername -a HubOrg
+
 script:
 - sfdx force:org:list --all --verbose
 - sfdx force:org:create -s -f config/project-scratch-def.json -a ciorg
