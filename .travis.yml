@@ -1,9 +1,11 @@
 sudo: true
-os: 
-- osx
-language: node_js
-node_js:
-- "8"
+os: osx
+
+addons:
+  homebrew:
+    casks:
+    - sfdx
+
 before_install:
 - openssl aes-256-cbc -K $encrypted_e4372197a91c_key -iv $encrypted_e4372197a91c_iv
   -in assets/server.key.enc -out assets/server.key -d
@@ -12,7 +14,6 @@ before_install:
 - export SFDX_DOMAIN_RETRY=300
 - export SFDX_DISABLE_APP_HUB=true
 - export SFDX_LOG_LEVEL=DEBUG
-- npm i -g sfdx-cli
 - sfdx --version
 - sfdx plugins --core
 - sfdx force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile assets/server.key
